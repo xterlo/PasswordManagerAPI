@@ -1,4 +1,4 @@
-﻿using PasswordManagerAPI.Core;
+﻿
 using PasswordManagerAPI.Tables;
 using static System.Reflection.Metadata.BlobBuilder;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace PasswordManagerAPI.Database
         public DbSet<Users> user { get; set; }
         public DbSet<Passwords> password { get; set; }
         public DbSet<Session> session { get; set; }
-        public DbSet<Logger> logger { get; set; }
+        public DbSet<Tables.Logger> logger { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,7 +39,7 @@ namespace PasswordManagerAPI.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           optionsBuilder.UseMySql($"server={Env.DBServer};user={Env.DBUser};password={Env.DBPassword};database={Env.DBDatabase};", new MySqlServerVersion(new Version(8, 0, 11)));
+           optionsBuilder.UseMySql($"server={Core.Env.DBServer};user={Core.Env.DBUser};password={Core.Env.DBPassword};database={Core.Env.DBDatabase};", new MySqlServerVersion(new Version(8, 0, 11)));
             
         }
 
